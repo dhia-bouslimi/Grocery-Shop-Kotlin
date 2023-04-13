@@ -11,6 +11,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.chaos.view.PinView
 import com.example.shop.R
+import com.example.shop.Utils.CustomToast
 import com.example.shop.Utils.EMAILFORGET
 import com.example.shop.Utils.PREF_NAME
 import com.example.shop.Utils.ReadyFunction

@@ -25,7 +25,7 @@ import com.example.shop.Navigation
 
 import com.example.shop.Views.Activity.Login
 import com.google.android.material.textfield.TextInputLayout
-import tn.yassin.discovery.Utils.CustomToast
+import com.example.shop.Utils.CustomToast
 
 import java.io.ByteArrayOutputStream
 
@@ -106,13 +106,13 @@ class ReadyFunction {
     }
 
     ////////////////////////:
-  /*  fun changeFragment(newFragment: Fragment?, context: Context, Back:String) {
+    fun changeFragment(newFragment: Fragment?, context: Context, Back:String) {
         val transaction: FragmentTransaction = (context as FragmentActivity).supportFragmentManager.beginTransaction()
         transaction.replace(R.id.container, newFragment!!)
         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
         transaction.addToBackStack(Back)
         transaction.commit()
-    }*/
+    }
 
    /* fun changeFragmentnull(newFragment: Fragment?, context: Context) {
         val transaction: FragmentTransaction = (context as FragmentActivity).supportFragmentManager.beginTransaction()

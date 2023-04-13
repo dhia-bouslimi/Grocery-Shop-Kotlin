@@ -36,6 +36,12 @@ import com.example.shop.Utils.*
 import com.example.shop.ViewModel.UserViewModel
 import com.example.shop.Views.Activity.Login
 import com.google.android.material.tabs.TabLayout
+import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 
 import java.io.*
 import java.util.*
@@ -71,6 +77,10 @@ class ProfileFragment : Fragment() {
         initView();
         SetToolbar()
         SetUserData()
+        OpenGalery()
+
+        OpenEditProfile()
+
 
     }
 
@@ -86,6 +96,15 @@ class ProfileFragment : Fragment() {
         viewpagerProfile = requireView().findViewById(R.id.view_pageProfile)
     }
 
+    fun OpenEditProfile()
+    {
+        btnEditProfile.setOnClickListener{
+            //fragmentManager?.beginTransaction()?.replace(R.id.container, EditProfil())?.commit()
+            fragmentManager?.beginTransaction()?.replace(R.id.container, EditProfil())?.addToBackStack("Edit")?.commit()
+        }
+    }
+
+
     fun SetUserData() {
         val nameUser = MySharedPref.getString(NAMEUSER, null)
         val avatarUser = MySharedPref.getString(AVATARUSER, null)
@@ -98,7 +117,7 @@ class ProfileFragment : Fragment() {
         val emailUser = MySharedPref.getString(EMAILUSER, null)
         txtBio.text = emailUser
         //txtBio.text = Html.fromHtml("<a href='stackoverflow.com'>Go StackOverFlow!</a>")
-        println("Lien de la photo : http://192.168.1.12:2500/uploads/$avatarUser")
+        println("Lien de la photo : http:// 192.168.1.18:2500/uploads/$avatarUser")
         println("avatarUser: $avatarUser")
         val ImagelINKAvatar = (avatarUser)
 
@@ -206,6 +225,117 @@ class ProfileFragment : Fragment() {
 
 
     }
+
+
+
+
+
+
+
+
+    fun OpenGalery()
+    {
+        userAvatar = requireView().findViewById(R.id.userAvatar)
+        userAvatar.setOnClickListener {
+            print("photo cliqued")
+            openGallery()
+        }
+    }
+
+
+
+
+
+
+    private fun openGallery() {
+        //requestStoragePermission()
+        Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI).apply {
+            type="image/*"
+            startActivityForResult(this,IMAGE_GALLERY_REQUEST_CODE)
+        }
+    }
+
+
+
+
+
+
+    @SuppressLint("Recycle")
+    fun UploadAvatar(context: Context){
+        //
+        MySharedPref =
+            context.getSharedPreferences(PREF_NAME, AppCompatActivity.MODE_PRIVATE);
+        val IdUser = MySharedPref.getString(IDUSER, null)
+        val TokenUser = MySharedPref.getString(TOKENUSER, null)
+        val EmailUser = MySharedPref.getString(EMAILUSER, null)
+        //
+        val fileDir=context.filesDir
+        val file= File(fileDir,"image.jpg")
+        val inputStream=context.contentResolver.openInputStream(imgUri!!)
+        val outputStream= FileOutputStream(file)
+        inputStream!!.copyTo(outputStream)
+        val requestBody=file.asRequestBody("image/*".toMediaTypeOrNull())
+        val image = MultipartBody.Part.createFormData("photo", file.name,requestBody)
+
+        viewModell= ViewModelProvider(requireActivity()).get(UserViewModel::class.java)
+
+        //val idUser= IdUser.toString().trim().toRequestBody("text/plain".toMediaTypeOrNull())
+        //val tokenUser= TokenUser.toString().trim().toRequestBody("text/plain".toMediaTypeOrNull())
+        val emailUser=EmailUser.toString().trim().toRequestBody("text/plain".toMediaTypeOrNull())
+        viewModell.UploadAvatar(emailUser,image,context)
+        //
+        viewModell._UserLiveData.observe(viewLifecycleOwner,{
+            if (it!=null){
+                //Toast.makeText(context,  file.name, Toast.LENGTH_LONG).show()
+                CustomToast(requireContext(), "Uploaded Successfully!","GREEN").show()
+            }else{
+                CustomToast(requireContext(), "Sorry, Something Goes Wrong!","RED").show()
+                //Toast.makeText(context,  file.name, Toast.LENGTH_LONG).show()
+                // CustomToast(this@Login, "Email or password is incorrect!","RED").show()
+            }
+        })
+    }
+
+
+
+
+    @Deprecated("Deprecated in Java")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == RESULT_OK && requestCode == IMAGE_GALLERY_REQUEST_CODE) {
+            if (data != null && data.data != null) {
+                print("weeeeeeeeeeee")
+                if (Build.VERSION.SDK_INT >= 28) {
+                    imgUri= data.data!!
+                    userAvatar.setImageURI(imgUri)
+                    //
+                    UploadAvatar(requireContext())
+                    //
+                }
+            }
+        }
+    }
+
+
+
+    @Deprecated("Deprecated in Java")
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String?>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == STORAGE_PERMISSION_CODE) {
+            if (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                openGallery()
+                Toast.makeText(requireContext(), "Permission accordée", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(requireContext(), "Permission refusée", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+
 
 
 

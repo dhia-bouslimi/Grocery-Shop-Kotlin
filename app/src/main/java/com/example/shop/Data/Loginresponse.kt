@@ -6,7 +6,7 @@ public class Loginresponse {
     internal var name: String? = null
     internal var email: String? = null
     internal var password: String? = null
-    internal var avatar: String? = null
+    internal var photo: String? = null
     internal var bio: String? = null
     internal var msg: String? = null
     internal var role:String? = null
@@ -52,12 +52,12 @@ public class Loginresponse {
         password = newPassword
     }
     // Getter avatar
-    fun getAvatar(): String? {
-        return avatar
+    fun getPhoto(): String? {
+        return photo
     }
     // Setter avatar
     fun setAvatar(newAvatar: String?) {
-        avatar = newAvatar
+        photo = newAvatar
     }
 
     // Getter Bio

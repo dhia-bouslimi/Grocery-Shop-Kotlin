@@ -1,4 +1,4 @@
-package tn.yassin.discovery.Utils
+package com.example.shop.Utils
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context

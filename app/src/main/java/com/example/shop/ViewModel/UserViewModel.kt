@@ -39,7 +39,7 @@ import com.example.shop.Network.UserApi
 import com.example.shop.Views.Activity.ForgetPassword2
 import com.example.shop.Views.Activity.ForgetPassword3
 import com.example.shop.Views.Activity.Login
-import tn.yassin.discovery.Utils.CustomToast
+import com.example.shop.Utils.CustomToast
 
 
 class UserViewModel : ViewModel() {
@@ -320,11 +320,11 @@ class UserViewModel : ViewModel() {
 
 
 
-    fun UploadAvatar(email:RequestBody,image: MultipartBody.Part,context: Context){
+    fun UploadAvatar(email:RequestBody,photo: MultipartBody.Part,context: Context){
         val progressdialog = ProgressDialog(context)
         progressdialog.setMessage("Please Wait....")
         progressdialog.show();
-        val addUser=service.postImage(email,image)
+        val addUser=service.postImage(email,photo)
         addUser.enqueue(object : Callback<Loginresponse> {
             override fun onResponse(call: Call<Loginresponse>, response: Response<Loginresponse>) {
                 if (response.isSuccessful){
@@ -336,6 +336,7 @@ class UserViewModel : ViewModel() {
                     var DataBody = response.body()?.toString()
                     if (DataBody != null && !DataBody.isEmpty()) {
                         val avatarFromBody = response.body()?.getmsg()
+                        println(avatarFromBody)
                         MySharedPref = context.getSharedPreferences(
                             PREF_NAME,
                             AppCompatActivity.MODE_PRIVATE

@@ -15,7 +15,7 @@ import com.example.shop.Utils.Validator
 import com.example.shop.ViewModel.UserViewModel
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
-import tn.yassin.discovery.Utils.CustomToast
+import com.example.shop.Utils.CustomToast
 import tn.yassin.discovery.Utils.PasswordStrength.StrengthCalculator
 
 

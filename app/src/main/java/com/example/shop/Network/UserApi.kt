@@ -36,15 +36,18 @@ interface UserApi {
     @POST("users/changePassword")
     fun ChangePasswordForgot(@Body map : HashMap<String, String> ): Call<JsonObject>
 
-    @POST("api/user/EditProfil")
+    @POST("users/UpdateUser")
     fun EditProfil(@Body map : HashMap<String, String> ): Call<JsonObject>
+
+    @POST("users/UpdatePassword")
+    fun UpdatePassword(@Body map : HashMap<String, String> ): Call<JsonObject>
 
 
     @Multipart
-    @POST("api/user/UploadAvatarUser")
+    @POST("users/updateavatar")
     fun postImage(
         @Part("email") email:RequestBody,
-        @Part image: MultipartBody.Part,
+        @Part photo: MultipartBody.Part,
     ):Call<Loginresponse>
 
 }

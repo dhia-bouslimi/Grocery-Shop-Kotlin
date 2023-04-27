@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.example.shop.Navigation
 import com.example.shop.R
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -148,7 +149,7 @@ class Authentication : AppCompatActivity() {
     }
 
     private fun goToHome() {
-        val intent= Intent(this, Home::class.java)
+        val intent= Intent(this, Navigation::class.java)
         startActivity(intent)
         finish()
     }

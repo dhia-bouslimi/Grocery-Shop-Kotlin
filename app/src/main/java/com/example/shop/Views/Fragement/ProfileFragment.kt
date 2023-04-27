@@ -35,6 +35,8 @@ import com.example.shop.R
 import com.example.shop.Utils.*
 import com.example.shop.ViewModel.UserViewModel
 import com.example.shop.Views.Activity.Login
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.material.tabs.TabLayout
 import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -65,6 +67,7 @@ class ProfileFragment : Fragment() {
     private val IMAGE_GALLERY_REQUEST_CODE: Int = 2001
     //
     override fun onCreateView(
+
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
 
@@ -84,6 +87,7 @@ class ProfileFragment : Fragment() {
 
     }
 
+
     fun initView() {
         MySharedPref =requireContext().getSharedPreferences(PREF_NAME, AppCompatActivity.MODE_PRIVATE);
         MyName = requireView().findViewById(R.id.txtUser)
@@ -92,6 +96,7 @@ class ProfileFragment : Fragment() {
         btnEditProfile = requireView().findViewById(R.id.btnEditProfile)
         btnEditProfile.setBackgroundResource(R.drawable.btn_dark); // Set Button Style @Null on the xml
         //
+
        // tabLayoutProfile = requireView().findViewById(R.id.tabLayoutProfile)
         viewpagerProfile = requireView().findViewById(R.id.view_pageProfile)
     }
@@ -106,6 +111,7 @@ class ProfileFragment : Fragment() {
 
 
     fun SetUserData() {
+
         val nameUser = MySharedPref.getString(NAMEUSER, null)
         val avatarUser = MySharedPref.getString(AVATARUSER, null)
 
@@ -304,7 +310,6 @@ class ProfileFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == RESULT_OK && requestCode == IMAGE_GALLERY_REQUEST_CODE) {
             if (data != null && data.data != null) {
-                print("weeeeeeeeeeee")
                 if (Build.VERSION.SDK_INT >= 28) {
                     imgUri= data.data!!
                     userAvatar.setImageURI(imgUri)

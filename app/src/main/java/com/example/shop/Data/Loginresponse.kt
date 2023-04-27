@@ -78,7 +78,9 @@ public class Loginresponse {
     fun getRole(): String? {
         return role
     }
+
     fun setRole(role: String?) {
         this.role = role
     }
+
 }

@@ -11,6 +11,7 @@ import android.view.View
 import android.widget.LinearLayout
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
+import com.example.shop.Views.Fragement.FournisseurFragment
 import com.example.shop.Views.Fragement.ProfileFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -21,6 +22,7 @@ class Navigation : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.navigation)
         //
+
         BottomNavigationView = findViewById(R.id.bottomNavigationView)
         //
         val toolbar: Toolbar = findViewById(R.id.toolbar54)
@@ -48,7 +50,24 @@ class Navigation : AppCompatActivity() {
                     refresh()
                     selectedFragment = ProfileFragment()
                 }
+
+                R.id.nav_favorite -> {
+                    toolbar.visibility = View.GONE
+                    refresh()
+                    selectedFragment = FournisseurFragment()
+                    println("Forunisseur has selected !!")
+                }
             }
+
+           // var selectedFragment: Fragment? = null
+         /*   when (item.itemId) {
+                R.id.nav_profile -> {
+                    toolbar.visibility = View.GONE
+                    refresh()
+                    selectedFragment = FournisseurFragment()
+                }
+            }*/
+
             val transaction = supportFragmentManager.beginTransaction()
             transaction.setCustomAnimations(
                 R.anim.slide_in,

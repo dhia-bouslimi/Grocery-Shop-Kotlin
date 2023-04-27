@@ -1,5 +1,6 @@
 package com.example.shop.Network
 
+import com.example.shop.Data.Fournisseur
 import com.example.shop.Data.Loginresponse
 import com.google.gson.JsonObject
 import okhttp3.MultipartBody
@@ -41,6 +42,9 @@ interface UserApi {
 
     @POST("users/UpdatePassword")
     fun UpdatePassword(@Body map : HashMap<String, String> ): Call<JsonObject>
+
+    @POST("fournisseurs/fournisseur")
+    fun GetAllfournisseur(): Call<List<Fournisseur>>
 
 
     @Multipart

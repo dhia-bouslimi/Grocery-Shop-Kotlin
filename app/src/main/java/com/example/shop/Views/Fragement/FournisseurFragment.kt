@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.shop.Data.Fournisseur
+import com.example.shop.Data.Promotion
 import com.example.shop.Network.UserApi
 import com.example.shop.Network.retrofit
 import com.example.shop.R
@@ -23,6 +24,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
+import tn.yassin.discovery.Utils.CustomDialogs
 import tn.yassin.discovery.Utils.talk
 import java.util.*
 
@@ -33,6 +35,7 @@ class FournisseurFragment : Fragment(), talk {
     private lateinit var SwipeRefreshSearch: SwipeRefreshLayout
     private lateinit var searchView:SearchView
     private lateinit var btnShowMyPosts:Button
+    private lateinit var BtnAddNeedy: Button
 
 
     val ReadyFunction = ReadyFunction()
@@ -59,11 +62,19 @@ class FournisseurFragment : Fragment(), talk {
         SwipeRefreshSearch=view.findViewById(R.id.SwipeRefreshSearch)
 
        // btnShowMyPosts=view.findViewById(R.id.btnShowMyPosts)
+        BtnAddNeedy=view.findViewById(R.id.ButtonAddPromo)
+
         searchView=view.findViewById(R.id.searchView)
         recylcerNeedy.setLayoutManager(StaggeredGridLayoutManager(2, 1))
         FournisseurAdapter = FournisseurAdapter(requireActivity().getApplicationContext())
         recylcerNeedy.adapter = FournisseurAdapter
 
+        BtnAddNeedy.setOnClickListener {
+            val factory = LayoutInflater.from(context)
+            val view: View = factory.inflate(R.layout.addfournisseur, null)
+            val msg = CustomDialogs(this)
+            msg.ShowDialogAddNeedy(context, view)
+        }
 
 
             GetAllBesoin() //Show only my Posts
@@ -110,6 +121,9 @@ class FournisseurFragment : Fragment(), talk {
         FournisseurAdapter.addDataList(n)
     }
 
+    override fun senddata(n: Promotion) {
+        TODO("Not yet implemented")
+    }
 
 
     fun OnSearch() {

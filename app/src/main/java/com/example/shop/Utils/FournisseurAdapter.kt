@@ -7,9 +7,11 @@ import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.Filter
 import android.widget.Filterable
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shop.Data.Fournisseur
 import com.example.shop.Network.FournisseurResponse
@@ -41,7 +43,6 @@ class FournisseurAdapter(var context: Context) : RecyclerView.Adapter<Fournisseu
     // Provide a direct reference to each of the views with data items
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
         val fullName : TextView
         val secteur : TextView
         val adresse: TextView
@@ -76,7 +77,7 @@ class FournisseurAdapter(var context: Context) : RecyclerView.Adapter<Fournisseu
         holder.fullName.text = data.fullName
         holder.secteur.text = data.secteur
         holder.adresse.text = data.adresse
-        holder.NumTel.text = data.numTel.toString()
+        holder.NumTel.text = data.numTel
 
 
         holder.itemView.setOnClickListener {
@@ -88,7 +89,7 @@ class FournisseurAdapter(var context: Context) : RecyclerView.Adapter<Fournisseu
             editor.putString("id", data.id)
             editor.putString("fullName", data.fullName)
             editor.putString("adresse", data.adresse)
-            editor.putString("secteur", data.numTel.toString())
+            editor.putString("secteur", data.numTel)
             editor.putString("numTel", data.secteur)
 
             editor.apply()  //Save Data
@@ -108,7 +109,6 @@ class FournisseurAdapter(var context: Context) : RecyclerView.Adapter<Fournisseu
             editorr.putString("NeedyScreenShot", sEncodedImage)
             editorr.apply()  //Save Data
         }
-
 
     }
 

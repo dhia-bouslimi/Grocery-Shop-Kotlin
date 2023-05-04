@@ -16,6 +16,7 @@ const val RememberPassword="RememberPassword"
 /////////////////////////////////////////////
 const val EMAILFORGET = "EMAILFORGET"
 const val CODEFORGET  = "CODEFORGET"
+const val IS_DARK_MODE = "is_dark_mode"
 
 
 

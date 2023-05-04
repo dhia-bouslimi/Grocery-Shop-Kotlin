@@ -9,12 +9,12 @@
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="421dp"
-        android:layout_height="373dp"
+        android:layout_width="394dp"
+        android:layout_height="334dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/img_3"
+        app:srcCompat="@drawable/imgauth"
         tools:ignore="MissingConstraints" />
 
     <View

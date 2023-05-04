@@ -2,6 +2,7 @@ package com.example.shop.Network
 
 import com.example.shop.Data.Fournisseur
 import com.example.shop.Data.Loginresponse
+import com.example.shop.Data.Promotion
 import com.google.gson.JsonObject
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -45,6 +46,15 @@ interface UserApi {
 
     @POST("fournisseurs/fournisseur")
     fun GetAllfournisseur(): Call<List<Fournisseur>>
+
+    @POST("fournisseurs/addfournisseur")
+    suspend fun AddFournisseur(@Body User: Fournisseur): Response<Fournisseur>
+
+    @POST("promotions/promotion")
+    fun GetAllPromotion(): Call<List<Promotion>>
+
+    @POST("promotions/addpromotion")
+    suspend fun AddPromotion(@Body User: Promotion): Response<Promotion>
 
 
     @Multipart

@@ -1,4 +1,5 @@
 package com.example.shop.Views.Activity
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Color
@@ -8,15 +9,14 @@ import android.text.TextWatcher
 import android.widget.*
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import com.example.shop.R
-import com.example.shop.Utils.EMAILUSER
-import com.example.shop.Utils.PREF_NAME
-import com.example.shop.Utils.ReadyFunction
+import com.example.shop.Utils.*
 import com.example.shop.ViewModel.UserViewModel
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
-import com.example.shop.Utils.Validator
+import com.google.android.material.switchmaterial.SwitchMaterial
 
 class Login : AppCompatActivity() {
     private lateinit var txtForgetPassword: TextView
@@ -72,6 +72,7 @@ class Login : AppCompatActivity() {
         txtEmail.setText(LastEmail)
     }
 
+    @SuppressLint("WrongViewCast", "UseSwitchCompatOrMaterialCode")
     fun initView() {
         btnLogin = findViewById(R.id.btnLogin)
         btnGoToSignUp = findViewById(R.id.btnGoToSignUp)
@@ -85,6 +86,43 @@ class Login : AppCompatActivity() {
         cbRememberMe = findViewById(R.id.comboRememberMe)
         ProgressbarLogin = findViewById(R.id.progressbar_login)
         AllOfPageLogin = findViewById(R.id.AllOfPageLogin)
+
+
+
+
+
+        val switchBtn = findViewById<Switch>(R.id.switch1)
+
+        val textView = findViewById<TextView>(R.id.darklight)
+
+// initialiser le mode sombre en fonction de l'état enregistré dans SharedPreferences
+        val isDarkMode = MySharedPref.getBoolean(IS_DARK_MODE, false)
+        if (isDarkMode) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            switchBtn.isChecked = true
+            textView.text = "Dark Mode"
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            switchBtn.isChecked = false
+            textView.text = "Light Mode"
+        }
+
+// set the switch to listen on checked change
+        switchBtn.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                // sauvegarder l'état du mode sombre en tant que vrai
+                MySharedPref.edit().putBoolean(IS_DARK_MODE, true).apply()
+                textView.text = "Dark Mode"
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                // sauvegarder l'état du mode sombre en tant que faux
+                MySharedPref.edit().putBoolean(IS_DARK_MODE, false).apply()
+                textView.text = "Light Mode"
+            }
+        }
+
+
     }
 
     fun GoToSignUp() {

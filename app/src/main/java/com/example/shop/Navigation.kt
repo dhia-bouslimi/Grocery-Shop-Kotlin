@@ -13,6 +13,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import com.example.shop.Views.Fragement.FournisseurFragment
 import com.example.shop.Views.Fragement.ProfileFragment
+import com.example.shop.Views.Fragement.PromotionFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class Navigation : AppCompatActivity() {
@@ -56,6 +57,13 @@ class Navigation : AppCompatActivity() {
                     refresh()
                     selectedFragment = FournisseurFragment()
                     println("Forunisseur has selected !!")
+                }
+
+                R.id.nav_explore -> {
+                    toolbar.visibility = View.GONE
+                    refresh()
+                    selectedFragment = PromotionFragment()
+                    println("Promotion has selected !!")
                 }
             }
 

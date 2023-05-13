@@ -26,4 +26,9 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="DialogStyle" parent="Theme.AppCompat.Light.Dialog">
+        <!--Other custom stuff if needed-->
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
 </resources>

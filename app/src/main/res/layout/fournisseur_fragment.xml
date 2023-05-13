@@ -60,11 +60,18 @@
                 android:queryHint="Search">
 
             </SearchView>
+
         </LinearLayout>
 
     </LinearLayout>
 
-
+    <ImageView
+        android:id="@+id/gifImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="487dp"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:src="@drawable/error" />
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/SwipeRefreshSearch"
         android:layout_width="match_parent"

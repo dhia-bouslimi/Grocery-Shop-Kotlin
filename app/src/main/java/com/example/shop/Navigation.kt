@@ -11,9 +11,7 @@ import android.view.View
 import android.widget.LinearLayout
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
-import com.example.shop.Views.Fragement.FournisseurFragment
-import com.example.shop.Views.Fragement.ProfileFragment
-import com.example.shop.Views.Fragement.PromotionFragment
+import com.example.shop.Views.Fragement.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class Navigation : AppCompatActivity() {
@@ -40,12 +38,15 @@ class Navigation : AppCompatActivity() {
         }*/
         toolbar.visibility = View.GONE
         ///////////////////////////////////////////////////////////////////////////////////////////
-      //  supportFragmentManager.beginTransaction().replace(R.id.container, FragmentHome()).commit();
+        supportFragmentManager.beginTransaction().replace(R.id.container, FragmentHome()).commit();
         BottomNavigationView.setSelectedItemId(R.id.nav_home)
         BottomNavigationView.setOnItemSelectedListener { item ->
             var selectedFragment: Fragment? = null
             when (item.itemId) {
-
+                R.id.nav_home -> {
+                    toolbar.visibility = View.GONE
+                    selectedFragment = FragmentHome()
+                }
                 R.id.nav_profile -> {
                     toolbar.visibility = View.GONE
                     refresh()
@@ -63,6 +64,12 @@ class Navigation : AppCompatActivity() {
                     toolbar.visibility = View.GONE
                     refresh()
                     selectedFragment = PromotionFragment()
+                    println("Promotion has selected !!")
+                }
+                R.id.nav_add -> {
+                    toolbar.visibility = View.GONE
+                    refresh()
+                    selectedFragment = ProductFragment()
                     println("Promotion has selected !!")
                 }
             }

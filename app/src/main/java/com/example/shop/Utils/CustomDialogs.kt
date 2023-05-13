@@ -1,7 +1,10 @@
-package tn.yassin.discovery.Utils
+package com.example.shop.Utils
 
 import android.annotation.SuppressLint
 import android.app.Dialog
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -9,7 +12,9 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.media.MediaPlayer
 import android.net.Uri
+import android.os.Build
 import android.text.Editable
+import android.text.Html
 import android.text.TextUtils
 import android.text.TextWatcher
 import android.util.Log
@@ -20,12 +25,13 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.app.NotificationCompat
 import com.example.shop.Data.Fournisseur
+import com.example.shop.Data.Produit
 import com.example.shop.Data.Promotion
 import com.example.shop.Network.UserApi
 import com.example.shop.Network.retrofit
 import com.example.shop.R
-import com.example.shop.Utils.CustomToast
 import com.example.shop.Views.Fragement.PromotionFragment
 import com.google.android.material.internal.ContextUtils
 import com.google.android.material.textfield.TextInputEditText
@@ -35,7 +41,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import retrofit2.Retrofit
-import java.text.SimpleDateFormat
 import java.util.*
 
 class CustomDialogs(val talk: talk? = null ) {
@@ -44,15 +49,18 @@ class CustomDialogs(val talk: talk? = null ) {
     private lateinit var DialogSecteurNeedy: TextInputLayout
     private lateinit var DialogPhoneNeedy: TextInputLayout
 
-    private lateinit var EditNameNeedy: TextInputLayout
-    private lateinit var EditLocationNeedy: TextInputLayout
-    private lateinit var EditBloodNeedy: TextInputLayout
-    private lateinit var EditPhoneNeedy: TextInputLayout
+
 
 
     private lateinit var DialogPrix: TextInputLayout
     private lateinit var Dialogduaration: TextInputLayout
     private lateinit var Dialogproduct: TextInputLayout
+
+
+    private lateinit var DialogPrice: TextInputEditText
+    private lateinit var Dialogquantite: TextInputEditText
+
+
 
 
 
@@ -382,6 +390,7 @@ class CustomDialogs(val talk: talk? = null ) {
 
 
 
+
     fun ShowDialogAddPromotion(context: Context?, view: View) {
         val dialog = Dialog(context!!)
         dialog.setContentView(view)
@@ -389,39 +398,52 @@ class CustomDialogs(val talk: talk? = null ) {
         dialog.window!!.getAttributes().windowAnimations = R.style.DialogAnimation; //Set Animation
         dialog.show()
 
-
-
         val BtnSaveAddPromo = view.findViewById<Button>(R.id.BtnSaveAddPromotion) as? Button
         DialogPrix = view.findViewById(R.id.DialogPrix)
         Dialogduaration = view.findViewById(R.id.Dialogduaration)
         Dialogproduct = view.findViewById(R.id.Dialogproduct)
 
-
-
-
         /////
         val preferences : SharedPreferences = context.getSharedPreferences("promo", Context.MODE_PRIVATE)
         val MyID = preferences.getString("id", null)
         //
-        ////
-
-
+        /////
 
         ///////
         gettextwathcerAddPromo()
         BtnSaveAddPromo?.setOnClickListener(object : View.OnClickListener {
             @SuppressLint("RestrictedApi")
             override fun onClick(view: View?) {
-                if (!validatePrix()
-                    or  !validateProduct() or !validateDuration()
-                ) {
+                if (!validatePrix() or  !validateProduct() or !validateDuration() ) {
                     CustomToast(context, "Something is empty!", "RED").show()
                     return
                 }
-                if(
-                    validatePrix()&&validateProduct()&&validateDuration()
-                )
-                {
+                if (validatePrix()&&validateProduct()&&validateDuration())  {
+
+                    val notificationManager = context?.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+                    val channelId = "MyApp"
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        val channel = NotificationChannel(channelId, "MyApp", NotificationManager.IMPORTANCE_DEFAULT)
+                        notificationManager.createNotificationChannel(channel)
+                    }
+
+
+
+
+                    val intent = Intent(context, PromotionFragment::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    val pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE)
+
+
+
+                    val notificationBuilder = NotificationCompat.Builder(context, channelId)
+                        .setStyle(NotificationCompat.BigTextStyle()
+                            .setBigContentTitle(Html.fromHtml("<b>Nouvelle promotion!!</b>")))
+                        .setContentText("Vérifiez les promotions du jour pour mettre les étiquetes sur les produits")
+                        .setSmallIcon(R.drawable.notification)
+                        .setAutoCancel(true)
+                        .setContentIntent(pendingIntent)
+                    notificationManager.notify(1, notificationBuilder.build())
 
                     val retrofi: Retrofit = retrofit.getInstance()
                     val service: UserApi = retrofi.create(UserApi::class.java)
@@ -431,8 +453,6 @@ class CustomDialogs(val talk: talk? = null ) {
                         Dialogproduct?.editText?.text.toString(),
                         Dialogduaration?.editText?.text.toString()
                     )
-
-
 
                     CoroutineScope(Dispatchers.IO).launch {
                         try {
@@ -459,9 +479,99 @@ class CustomDialogs(val talk: talk? = null ) {
                                 CustomToast(context, "Sorry, Our Server Is Down!", "RED").show()
                             })
                         }
-
                     }
                 }
+            }
+        })
+    }
+
+
+
+   /* private fun gettextwathcerUpdateProduct() {
+        DialogPrice?.editText?.addTextChangedListener(PriceTextWatcher)
+        Dialogquantite?.editText?.addTextChangedListener(QuantiteTextWatcher)
+
+    }
+    private val PriceTextWatcher: TextWatcher = object : TextWatcher {
+        override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+        override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+        override fun afterTextChanged(s: Editable) { validatePrice() }
+    }
+    private val QuantiteTextWatcher: TextWatcher = object : TextWatcher {
+        override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+        override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+        override fun afterTextChanged(s: Editable) { validateQuantite() }
+    }
+
+
+
+
+    private fun validatePrice(): Boolean {
+        if (DialogPrice?.editText?.text!!.isEmpty()) {
+            DialogPrice.setError("Must Not be Empty !")
+            return false
+        } else {
+            DialogPrice.setError(null)
+            return true
+        }
+        return true
+    }
+    private fun validateQuantite(): Boolean {
+        if (Dialogquantite?.editText?.text!!.isEmpty()) {
+            Dialogquantite.setError("Must Not be Empty !")
+            return false
+        } else {
+            Dialogquantite.setError(null)
+            return true
+        }
+        return true
+    }*/
+
+
+    fun ShowDialogUpdateProduct(context: Context?, view: View) {
+        val dialog = Dialog(context!!)
+        dialog.setContentView(view)
+        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT)) //Make it TRANSPARENT
+        dialog.window!!.getAttributes().windowAnimations = R.style.DialogAnimation; //Set Animation
+        dialog.show()
+
+        val BtnSaveUpdateProduct = view.findViewById<Button>(R.id.BtnSaveAddPromotion) as? Button
+        DialogPrice = view.findViewById(R.id.edt_Prix)
+        Dialogquantite = view.findViewById(R.id.edt_quantite)
+        val txtPrice = view.findViewById<TextView>(R.id.edt_Prix) as? TextView
+        val txtquantite = view.findViewById<TextView>(R.id.edt_quantite) as? TextView
+
+
+
+
+        /////
+        val preferences : SharedPreferences = context.getSharedPreferences("product", Context.MODE_PRIVATE)
+        val MyID = preferences.getString("_id", null)
+        val prix = preferences.getString("prix", null)
+        val quantite = preferences.getString("quantite", null)
+        println(MyID);
+
+        txtPrice!!.text = prix
+        txtquantite!!.text = quantite
+
+
+        //
+        /////
+
+        ///////
+       // gettextwathcerUpdateProduct()
+        BtnSaveUpdateProduct?.setOnClickListener(object : View.OnClickListener {
+            @SuppressLint("RestrictedApi")
+            override fun onClick(view: View?) {
+              /*  if (!validatePrice() or  !validateQuantite()  ) {
+                    CustomToast(context, "Something is empty!", "RED").show()
+                    return
+                }*/
+
+
+                EditProduct(MyID.toString(),DialogPrice.text.toString(),Dialogquantite.text.toString(),context,dialog)
+
+
 
             }
         })
@@ -470,6 +580,46 @@ class CustomDialogs(val talk: talk? = null ) {
 
 
 
+
+    @SuppressLint("RestrictedApi")
+    fun EditProduct(Productid:String, prix:String, quantite: String, context: Context?, dialog: Dialog)
+    {
+        val retrofi: Retrofit = retrofit.getInstance()
+        val service: UserApi = retrofi.create(UserApi::class.java)
+        val Product = Produit()
+        Product.setID(Productid)
+        Product.setPrix(prix)
+        Product.setQuantite(quantite)
+
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val response = service.UpdateProduit(Product)
+                withContext(Dispatchers.Main) {
+                    if (response!!.isSuccessful) {
+                        if (context != null) {
+                            CustomToast(context, "Updated Successfully!","GREEN").show()
+                        }
+                        dialog.dismiss()
+
+                    } else {
+                        Log.e("RETROFIT_ERROR", response.code().toString())
+                        println("Message :" + response.errorBody()?.string())
+                        if (context != null) {
+                            CustomToast(context, "Something Went Wrong!", "RED").show()
+                        }
+                    }
+                }
+            } catch (e: Exception) {
+                println("Error")
+                println(e.printStackTrace())
+                ContextUtils.getActivity(context)?.runOnUiThread(java.lang.Runnable {
+                    dialog.dismiss()
+                    // CustomToast(context, "Sorry, Our Server Is Down!", "RED").show()
+                    //ReadyFunction.changeFragmentnull(FragmentExplore(), context)
+                })
+            }
+        }
+    }
 
 
     /////////
@@ -497,6 +647,8 @@ class CustomDialogs(val talk: talk? = null ) {
 interface talk {
     fun senddata(n: Fournisseur)
     fun senddata(n: Promotion)
+    fun senddata(n: Produit)
+
 }
 
 

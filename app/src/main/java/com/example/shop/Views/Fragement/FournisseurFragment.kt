@@ -11,7 +11,9 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.bumptech.glide.Glide
 import com.example.shop.Data.Fournisseur
+import com.example.shop.Data.Produit
 import com.example.shop.Data.Promotion
 import com.example.shop.Network.UserApi
 import com.example.shop.Network.retrofit
@@ -24,8 +26,8 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
-import tn.yassin.discovery.Utils.CustomDialogs
-import tn.yassin.discovery.Utils.talk
+import com.example.shop.Utils.CustomDialogs
+import com.example.shop.Utils.talk
 import java.util.*
 
 class FournisseurFragment : Fragment(), talk {
@@ -36,7 +38,7 @@ class FournisseurFragment : Fragment(), talk {
     private lateinit var searchView:SearchView
     private lateinit var btnShowMyPosts:Button
     private lateinit var BtnAddNeedy: Button
-
+    private lateinit var gifImageView: ImageView
 
     val ReadyFunction = ReadyFunction()
 
@@ -60,6 +62,7 @@ class FournisseurFragment : Fragment(), talk {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         recylcerNeedy = view.findViewById(R.id.recyclerSearch)
         SwipeRefreshSearch=view.findViewById(R.id.SwipeRefreshSearch)
+        gifImageView = view.findViewById(R.id.gifImageView)
 
        // btnShowMyPosts=view.findViewById(R.id.btnShowMyPosts)
         BtnAddNeedy=view.findViewById(R.id.ButtonAddPromo)
@@ -124,6 +127,9 @@ class FournisseurFragment : Fragment(), talk {
     override fun senddata(n: Promotion) {
         TODO("Not yet implemented")
     }
+    override fun senddata(n: Produit) {
+        TODO("Not yet implemented")
+    }
 
 
     fun OnSearch() {
@@ -143,12 +149,28 @@ class FournisseurFragment : Fragment(), talk {
                 if (newText.length >= 1) {
                     // appliquer le filtre de recherche sur la liste de fournisseurs
                     FournisseurAdapter.filter.filter(newText)
-                } else {
+                    // Vérifier si la liste filtrée est vide
+                    if (FournisseurAdapter.itemCount == 0) {
+                        // Afficher l'image animée GIF
+                        Glide.with(requireContext())
+                            .load(R.drawable.error)
+                            .into(gifImageView)
+                        gifImageView.visibility = View.VISIBLE
+                    } else {
+                        // Masquer l'image animée GIF
+                        Glide.with(requireContext())
+                            .clear(gifImageView)
+                        gifImageView.visibility = View.GONE                    }
+                }
+
+                else {
                     // réinitialiser la liste de fournisseurs
                     val allFournisseurs = GetAllBesoin()
                     FournisseurAdapter.setDataList(BesoinModels)
                     FournisseurAdapter.notifyDataSetChanged()
-                }
+                    Glide.with(requireContext())
+                        .clear(gifImageView)
+                    gifImageView.visibility = View.GONE                }
                 return true
             }
         })

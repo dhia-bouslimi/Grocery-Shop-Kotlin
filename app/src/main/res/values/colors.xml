@@ -13,4 +13,6 @@
     <!--+++++++++++++++++++++++++++++++++++++++++++++MyColors+++++++++++++++++++++++++++++++++++++++++++++++++-->
     <color name="green">#51CA5B</color>
     <color name="green1">#78bf59</color>
+    <color name="background">#dddddd</color>
+
 </resources>

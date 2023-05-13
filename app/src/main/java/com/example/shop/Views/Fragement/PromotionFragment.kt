@@ -24,7 +24,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
-import tn.yassin.discovery.Utils.CustomDialogs
+import com.example.shop.Utils.CustomDialogs
 import java.util.ArrayList
 
 class PromotionFragment : Fragment() {

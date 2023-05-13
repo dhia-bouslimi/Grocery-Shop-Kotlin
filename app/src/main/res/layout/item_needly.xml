@@ -79,4 +79,6 @@
             app:drawableStartCompat="@drawable/ic_baseline_local_phone_24" />
 
     </LinearLayout>
+
+
 </androidx.cardview.widget.CardView>

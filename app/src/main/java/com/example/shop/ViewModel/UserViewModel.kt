@@ -17,6 +17,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.shop.Data.Loginresponse
+import com.example.shop.Data.Produit
 import com.example.shop.Network.SessionManager
 import com.example.shop.Network.retrofit
 import com.example.shop.R
@@ -40,6 +41,7 @@ import com.example.shop.Views.Activity.ForgetPassword2
 import com.example.shop.Views.Activity.ForgetPassword3
 import com.example.shop.Views.Activity.Login
 import com.example.shop.Utils.CustomToast
+import com.google.android.material.internal.ContextUtils
 
 
 class UserViewModel : ViewModel() {
@@ -393,6 +395,11 @@ class UserViewModel : ViewModel() {
         }
     }
 */
+
+
+
+
+
 
 
 }

@@ -2,6 +2,7 @@ package com.example.shop.Network
 
 import com.example.shop.Data.Fournisseur
 import com.example.shop.Data.Loginresponse
+import com.example.shop.Data.Produit
 import com.example.shop.Data.Promotion
 import com.google.gson.JsonObject
 import okhttp3.MultipartBody
@@ -55,6 +56,23 @@ interface UserApi {
 
     @POST("promotions/addpromotion")
     suspend fun AddPromotion(@Body User: Promotion): Response<Promotion>
+
+    @POST("stocks/stock")
+    fun GetAllProduit(): Call<List<Produit>>
+
+    @POST("stocks/UpdateStock")
+    suspend fun UpdateProduit(@Body Post: Produit): Response<Produit>
+
+
+    @Multipart
+    @POST("stocks/addStock")
+    suspend fun addProduit(
+        @Part("type") type: RequestBody,
+        @Part("quantite") quantite: RequestBody,
+        @Part("prix") prix: RequestBody,
+        @Part image: MultipartBody.Part,
+    ): Response<Produit>
+
 
 
     @Multipart

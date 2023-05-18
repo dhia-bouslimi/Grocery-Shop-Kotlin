@@ -52,8 +52,7 @@ class FournisseurFragment : Fragment(), talk {
         ctx = container?.context
         self = LayoutInflater.from(ctx).inflate(R.layout.fournisseur_fragment, container, false)
 
-        ////////////////////////////////////////////////////////////////////////////////////////////
-        //  val Iam = self?.findViewById<TextView>(R.id.Iam)
+
 
         return self
     }
@@ -64,7 +63,7 @@ class FournisseurFragment : Fragment(), talk {
         SwipeRefreshSearch=view.findViewById(R.id.SwipeRefreshSearch)
         gifImageView = view.findViewById(R.id.gifImageView)
 
-       // btnShowMyPosts=view.findViewById(R.id.btnShowMyPosts)
+
         BtnAddNeedy=view.findViewById(R.id.ButtonAddPromo)
 
         searchView=view.findViewById(R.id.searchView)
@@ -88,9 +87,6 @@ class FournisseurFragment : Fragment(), talk {
         }
         OnSearch()
 
-/*        btnShowMyPosts.setOnClickListener {
-            GetAllBesoin() //Show only my Posts
-        }*/
 
 
 
@@ -104,7 +100,6 @@ class FournisseurFragment : Fragment(), talk {
             override fun onResponse(call: Call<List<Fournisseur>>, response: Response<List<Fournisseur>>) {
                 BesoinModels = ArrayList(response.body())
                 FournisseurAdapter.setDataList(BesoinModels)
-                //FournisseurAdapter.notifyDataSetChanged()
 
                 println("somme : "+FournisseurAdapter.itemCount)
                 println(response.body())
@@ -115,7 +110,6 @@ class FournisseurFragment : Fragment(), talk {
                 ContextUtils.getActivity(context)?.runOnUiThread(java.lang.Runnable {
                     CustomToast(requireContext(), "Something went wrong!","RED").show()
                 })
-                // Log.d("***", "Opppsss" + t.message)
             }
         })
     }
@@ -133,11 +127,9 @@ class FournisseurFragment : Fragment(), talk {
 
 
     fun OnSearch() {
-        //searchView.setIconifiedByDefault(true);
-        //searchView.setFocusable(true);
+
         searchView.setIconified(false);
         searchView.clearFocus();
-        //searchView.requestFocusFromTouch();
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {

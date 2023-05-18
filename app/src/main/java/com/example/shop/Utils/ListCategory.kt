@@ -12,45 +12,49 @@ class ListCategory {
     {
         ListCategory.add(
             Category(
-                NomCategory = "Plage",
-                IconCategory = R.drawable.icon_beach
+                NomCategory = "Fruits",
+                IconCategory = R.drawable.lii
             )
         )
         ListCategory.add(
             Category(
-                NomCategory = "Culture",
-                IconCategory = R.drawable.icon_history
+                NomCategory = "Milk",
+                IconCategory = R.drawable.mii
             )
         )
         ListCategory.add(
             Category(
-                NomCategory = "Desert",
-                IconCategory = R.drawable.icon_sahara
+                NomCategory = "Meat",
+                IconCategory = R.drawable.vii
             )
         )
         ListCategory.add(
             Category(
-                NomCategory = "Arts",
-                IconCategory = R.drawable.icon_beach
+                NomCategory = "Yogurt",
+                IconCategory = R.drawable.yag
             )
         )
         ListCategory.add(
             Category(
-                NomCategory = "Food",
-                IconCategory = R.drawable.icon_restau
+                NomCategory = "Fruits",
+                IconCategory = R.drawable.fdfd
             )
         )
         ListCategory.add(
             Category(
-                NomCategory = "Activite",
-                IconCategory = R.drawable.icon_sahara
+                NomCategory = "Fruits",
+                IconCategory = R.drawable.fdfd
             )
         )
         ListCategory.add(
             Category(
-                NomCategory = "Nature",
-                IconCategory = R.drawable.icon_nature
+                NomCategory = "Fruits",
+                IconCategory = R.drawable.fdfd
             )
         )
+
+
+
+
     }
 }

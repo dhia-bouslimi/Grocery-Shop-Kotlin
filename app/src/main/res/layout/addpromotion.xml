@@ -32,7 +32,7 @@
                     android:layout_height="58dp"
                     android:background="#F34336"
                     android:gravity="center"
-                    android:text="Add Promotion"
+                    android:text="@string/Addpromotion"
                     android:textColor="#FFFFFF"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -62,7 +62,7 @@
                         android:layout_weight="1"
                         android:background="?attr/colorOnPrimary"
 
-                        android:hint="Reduction"
+                        android:hint="@string/Reduction"
                         android:textColorHint="#A1A1A1"
                         app:boxStrokeColor="@color/black"
                         app:boxStrokeWidth="1dp"
@@ -101,7 +101,7 @@
                         android:layout_weight="1"
                         android:background="?attr/colorOnPrimary"
 
-                        android:hint="Product"
+                        android:hint="@string/Product"
                         android:textColorHint="#A1A1A1"
                         app:boxStrokeColor="@color/black"
                         app:boxStrokeWidth="1dp"
@@ -139,7 +139,7 @@
                         android:layout_margin="5dp"
                         android:background="?attr/colorOnPrimary"
 
-                        android:hint="Duration"
+                        android:hint="@string/Duration"
                         android:textColorHint="#A1A1A1"
                         app:boxStrokeColor="@color/black"
                         app:boxStrokeWidth="1dp"
@@ -189,7 +189,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="#36474F"
-                    android:text="Save"
+                    android:text="@string/Save"
                     android:textColor="#FFFFFF" />
 
             </LinearLayout>

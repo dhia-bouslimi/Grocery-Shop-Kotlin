@@ -29,7 +29,7 @@
                 android:layout_toEndOf="@+id/AnnulerChangeBio"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Modifier Votre Bio"
+                android:text="@string/updage"
                 android:textColor="#515151"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -53,7 +53,7 @@
                 android:layout_marginEnd="5dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Enregistrer"
+                android:text="@string/Save"
                 android:textColor="#CECFD1" />
 
             <com.google.android.material.textfield.TextInputLayout

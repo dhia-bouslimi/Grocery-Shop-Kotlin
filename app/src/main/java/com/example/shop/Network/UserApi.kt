@@ -27,8 +27,6 @@ interface UserApi {
     @POST("users/signup")
     fun signup(@Body map : HashMap<String, String> ): Call<JsonObject>
 
-    @POST("api/user/SendConfirmEmail")
-    suspend fun SendConfirmEmail(@Body User: Loginresponse): Response<Loginresponse>
 
     @POST("users/forgetPassword")
     fun SendCodeForgot(@Body map : HashMap<String, String> ): Call<JsonObject>

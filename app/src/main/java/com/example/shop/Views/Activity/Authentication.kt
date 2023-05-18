@@ -1,37 +1,101 @@
 package com.example.shop.Views.Activity
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.res.ColorStateList
+import android.content.res.Configuration
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.widget.Button
+import android.widget.Switch
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
+import com.example.shop.MyApplication
 import com.example.shop.Navigation
 import com.example.shop.R
+import com.example.shop.Utils.IS_DARK_MODE
+import com.example.shop.Utils.IS_FRENSH
+import com.example.shop.Utils.IS_FRENSH
+import com.example.shop.Utils.PREF_NAME
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
+import java.util.*
 
 class Authentication : AppCompatActivity() {
     private lateinit var gsc: GoogleSignInClient
     private lateinit var gso: GoogleSignInOptions
 
+    private lateinit var MySharedPref: SharedPreferences
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_authentification)
 
+        MySharedPref = getSharedPreferences(PREF_NAME, MODE_PRIVATE)
+
+
+
+        initView()
 
 
 
 
-// changement couleur bouton et corner radius
+
+
+
+
+    }
+
+
+    @SuppressLint("WrongViewCast", "UseSwitchCompatOrMaterialCode")
+    fun initView() {
+        val switchLanguage = findViewById<Switch>(R.id.switch_language)
+
+
+
+        val isFrench = MySharedPref.getBoolean(IS_FRENSH, false)
+        switchLanguage.isChecked = isFrench
+
+
+
+
+
+
+        switchLanguage.setOnCheckedChangeListener { _, isChecked ->
+            // Check if the switch is checked
+            if (isChecked) {
+                // Change the language to Arabic
+                MySharedPref.edit().putBoolean(IS_FRENSH, true).apply()
+
+                setLocale("fr")
+
+            } else {
+                // Use the default language
+
+                setLocale("")
+                MySharedPref.edit().putBoolean(IS_FRENSH, false).apply()
+
+            }
+
+            // Recreate the activity to apply the change of language
+            updateUIWithNewLanguage()
+            recreate()
+        }
+
+
+
+
+
+        // changement couleur bouton et corner radius
 
         val btnlogin = findViewById<Button>(R.id.btnlogin)
         val radius = resources.getDimension(R.dimen.button_corner_radius) // obtenir le rayon du coin depuis les ressources
@@ -48,7 +112,6 @@ class Authentication : AppCompatActivity() {
 
         val color = ContextCompat.getColor(this, R.color.green1)
         val colorgoogle = ContextCompat.getColor(this, R.color.white)
-        val colorfb = ContextCompat.getColor(this, R.color.purple_500)
 
 
 
@@ -87,16 +150,7 @@ class Authentication : AppCompatActivity() {
         }
 
 
-        // Bouton facebook
-        val btnfacebook = findViewById<Button>(R.id.facebook)
-        val radiusss = resources.getDimension(R.dimen.button_corner_radius_google)
 
-        val backgroundColorFb = ContextCompat.getColor(this, R.color.purple_500)
-        val backgroundDrawableee = GradientDrawable()
-        backgroundDrawableee.setColor(backgroundColorFb) // définir la couleur de fond
-        backgroundDrawableee.cornerRadius = radiusss // définir le rayon des coins
-        btnfacebook.background = backgroundDrawableee
-        btnfacebook.backgroundTintList = ColorStateList.valueOf(colorfb)
 
 
         val ButtonLogin = findViewById<Button>(R.id.btnlogin)
@@ -113,13 +167,22 @@ class Authentication : AppCompatActivity() {
 
 
 
-
-
-
-
-
-
     }
+
+    private fun updateUIWithNewLanguage() {
+        // Mettez à jour tous les éléments de l'interface utilisateur nécessitant une traduction ou un rafraîchissement
+
+        // Par exemple, vous pouvez mettre à jour le texte des boutons :
+        val buttonLogin = findViewById<Button>(R.id.btnlogin)
+        buttonLogin.text = getString(R.string.Login)
+
+        val buttonRegister = findViewById<Button>(R.id.btnregister)
+        buttonRegister.text = getString(R.string.Register)
+
+        // Mettez à jour d'autres éléments de l'interface utilisateur selon vos besoins
+    }
+
+
     override fun  onActivityResult(requestCode: Int, resultCode: Int, data: Intent?){
         super.onActivityResult(requestCode,resultCode,data)
 
@@ -143,6 +206,22 @@ class Authentication : AppCompatActivity() {
         }
     }
 
+
+
+    private fun setLocale(language: String) {
+        val config = Configuration(resources.configuration)
+        val locale = if (language.isNotEmpty()) Locale(language) else Locale.getDefault()
+        config.setLocale(locale)
+        resources.updateConfiguration(config, resources.displayMetrics)
+        val editor = MySharedPref.edit()
+        editor.putBoolean(IS_FRENSH, language == "fr")
+        editor.apply()
+    }
+
+
+
+
+
     private fun goToSignIn() {
         val signInIntent=gsc.signInIntent
         startActivityForResult(signInIntent,1000)
@@ -153,5 +232,23 @@ class Authentication : AppCompatActivity() {
         startActivity(intent)
         finish()
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

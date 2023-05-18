@@ -69,20 +69,7 @@ class CustomDialogs(val talk: talk? = null ) {
         mMediaPlayer = MediaPlayer.create(context, R.raw.soundialog)
         mMediaPlayer!!.start()
     }
-    fun ShowDialogNoConnection(context: Context?, view: View) {
-        val dialog = Dialog(context!!)
-        dialog.setContentView(view)
-        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT)) //Make it TRANSPARENT
-        dialog.window!!.getAttributes().windowAnimations = R.style.DialogAnimation; //Set Animation
-        dialog.show()
-        SoundNotification(context)
-        val btnigotit = view.findViewById<Button>(R.id.BtnGotIt) as? Button
-        btnigotit?.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(view: View?) {
-                dialog.dismiss()
-            }
-        })
-    }
+
 
 
     fun ShowDetailsNeedy(context: Context?, view: View) {
@@ -113,10 +100,10 @@ class CustomDialogs(val talk: talk? = null ) {
         val DetailsHospitalLocation = view.findViewById<TextView>(R.id.DetailsHospitalLocation) as? TextView
         val DetailsPhoneNeedy = view.findViewById<TextView>(R.id.DetailsPhoneNeedy) as? TextView
         /////
-        DetailsBlood?.text="Secteur: "+numTel
-        DetailsFullName?.text="Name: "+fullName
-        DetailsHospitalLocation?.text="Location: "+adresse
-        DetailsPhoneNeedy?.text="Phone: "+secteur
+        DetailsBlood?.text=numTel
+        DetailsFullName?.text=fullName
+        DetailsHospitalLocation?.text=adresse
+        DetailsPhoneNeedy?.text=secteur
         /////
         val DetailsCallNeedy = view.findViewById<TextView>(R.id.DetailsCallNeedy) as? TextView
         val DetailsDeleteNeedy = view.findViewById<TextView>(R.id.DetailsDeleteNeedy) as? TextView
@@ -487,45 +474,6 @@ class CustomDialogs(val talk: talk? = null ) {
 
 
 
-   /* private fun gettextwathcerUpdateProduct() {
-        DialogPrice?.editText?.addTextChangedListener(PriceTextWatcher)
-        Dialogquantite?.editText?.addTextChangedListener(QuantiteTextWatcher)
-
-    }
-    private val PriceTextWatcher: TextWatcher = object : TextWatcher {
-        override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-        override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
-        override fun afterTextChanged(s: Editable) { validatePrice() }
-    }
-    private val QuantiteTextWatcher: TextWatcher = object : TextWatcher {
-        override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-        override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
-        override fun afterTextChanged(s: Editable) { validateQuantite() }
-    }
-
-
-
-
-    private fun validatePrice(): Boolean {
-        if (DialogPrice?.editText?.text!!.isEmpty()) {
-            DialogPrice.setError("Must Not be Empty !")
-            return false
-        } else {
-            DialogPrice.setError(null)
-            return true
-        }
-        return true
-    }
-    private fun validateQuantite(): Boolean {
-        if (Dialogquantite?.editText?.text!!.isEmpty()) {
-            Dialogquantite.setError("Must Not be Empty !")
-            return false
-        } else {
-            Dialogquantite.setError(null)
-            return true
-        }
-        return true
-    }*/
 
 
     fun ShowDialogUpdateProduct(context: Context?, view: View) {
@@ -563,10 +511,7 @@ class CustomDialogs(val talk: talk? = null ) {
         BtnSaveUpdateProduct?.setOnClickListener(object : View.OnClickListener {
             @SuppressLint("RestrictedApi")
             override fun onClick(view: View?) {
-              /*  if (!validatePrice() or  !validateQuantite()  ) {
-                    CustomToast(context, "Something is empty!", "RED").show()
-                    return
-                }*/
+
 
 
                 EditProduct(MyID.toString(),DialogPrice.text.toString(),Dialogquantite.text.toString(),context,dialog)
@@ -622,27 +567,6 @@ class CustomDialogs(val talk: talk? = null ) {
     }
 
 
-    /////////
-  /*  fun ShowDialogInformations(context: Context?, view: View) {
-        val dialog = Dialog(context!!)
-        dialog.setContentView(view)
-        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT)) //Make it TRANSPARENT
-        dialog.window!!.getAttributes().windowAnimations = R.style.DialogAnimation; //Set Animation
-        dialog.show()
-        SoundNotification(context)
-        val btnigotit = view.findViewById<Button>(R.id.BtnOkay) as? Button
-        btnigotit?.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(view: View?) {
-                dialog.dismiss()
-                //
-                val sharedPref = context.getSharedPreferences("PrayerTimes", Context.MODE_PRIVATE)
-                val editor = sharedPref.edit()
-                editor.putBoolean("FirstTimeRun", false)
-                editor.apply()
-                //
-            }
-        })
-    }*/
 }
 interface talk {
     fun senddata(n: Fournisseur)

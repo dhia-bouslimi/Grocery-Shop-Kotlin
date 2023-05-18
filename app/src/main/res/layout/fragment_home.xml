@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/colorOnPrimary"
+
     xmlns:shimmer="http://schemas.android.com/apk/res-auto"
     tools:context=".Views.Fragement.FragmentHome">
 
@@ -21,9 +23,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="?attr/colorOnPrimary"
+
             android:orientation="vertical">
 
-            <include layout="@layout/shimmer_recommanded" />
 
             <include layout="@layout/shimmer_recommanded" />
 
@@ -32,6 +35,9 @@
             <include layout="@layout/shimmer_recommanded" />
 
             <include layout="@layout/shimmer_recommanded" />
+
+            <include layout="@layout/shimmer_recommanded" />
+
         </LinearLayout>
 
     </com.facebook.shimmer.ShimmerFrameLayout>
@@ -45,6 +51,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="?attr/colorOnPrimary"
+
             android:orientation="vertical" >
 
             <RelativeLayout
@@ -60,7 +68,7 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
                     android:text="@string/categorie"
-                    android:textColor="#202B36"
+                    android:textColor="?attr/colorOnSecondary"
                     android:textSize="22sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -72,21 +80,21 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/textView2"
                     android:layout_marginTop="10dp"
-                    android:background="#ffffff"
+                    android:background="?attr/colorOnPrimary"
                     android:layoutAnimation="@anim/layoutanim"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <TextView
                     android:id="@+id/txtRecomm"
-                    android:layout_width="wrap_content"
+                    android:layout_width="229dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/recyclerCategory"
                     android:layout_alignParentStart="true"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
-                    android:text="@string/recommended"
-                    android:textColor="#202B36"
+                    android:text="@string/recom"
+                    android:textColor="?attr/colorOnSecondary"
                     android:textSize="22sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -105,14 +113,14 @@
 
                 <TextView
                     android:id="@+id/whatareulooking"
-                    android:layout_width="364dp"
+                    android:layout_width="391dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="15dp"
                     android:text="@string/WhatdouWant"
-                    android:textColor="#202B36"
-                    android:textSize="34sp"
+                    android:textColor="?attr/colorOnSecondary"
+                    android:textSize="28sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.494"
@@ -135,6 +143,14 @@
                     app:layout_constraintStart_toStartOf="parent">
 
                 </SearchView>
+                <ImageView
+                    android:id="@+id/gifImageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="487dp"
+                    android:layout_gravity="center"
+                    android:visibility="gone"
+                    android:src="@drawable/error" />
+
 
                 <TextView
                     android:id="@+id/ShowMoreHome"
@@ -142,24 +158,15 @@
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/txtRecomm"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="17dp"
-                    android:layout_marginBottom="-10dp"
+                    android:layout_marginEnd="19dp"
+                    android:layout_marginBottom="2dp"
                     android:text="@string/show_all"
                     android:textColor="#78909C"
                     android:textStyle="bold" />
 
-                <ImageView
-                    android:id="@+id/imgMosque"
-                    android:layout_width="50dp"
-                    android:layout_height="47dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginTop="37dp"
-                    android:layout_marginEnd="29dp"
-                    android:src="@drawable/fournisseurimg" />
-
             </RelativeLayout>
         </LinearLayout>
+
     </ScrollView>
 
 </RelativeLayout>

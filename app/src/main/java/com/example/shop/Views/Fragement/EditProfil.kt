@@ -63,7 +63,7 @@ class EditProfil : Fragment() {
     fun SetUserData() {
         val NameUser = MySharedPref.getString(NAMEUSER, null)
         val EmailUser = MySharedPref.getString(EMAILUSER, null)
-        val BioUser = MySharedPref.getString(BIOUSER, null)
+        val BioUser = MySharedPref.getString(AGEUSER, null)
         NamehasSelcted.text = NameUser
         EmailhasSelcted.text = EmailUser
         BiohasSelcted.text = BioUser
@@ -94,7 +94,7 @@ class EditProfil : Fragment() {
             val msg = DialogChangeBio()
             msg.ShowEditBio(context, view)
             val txtBioChange = view.findViewById<TextView>(R.id.txtBioChange) as? TextView
-            val BioUser = MySharedPref.getString(BIOUSER, null)
+            val BioUser = MySharedPref.getString(AGEUSER, null)
             txtBioChange!!.text = BioUser
         }
         PasswordhasSelcted.setOnClickListener {
@@ -115,30 +115,7 @@ class EditProfil : Fragment() {
         BackEdit = requireView().findViewById(R.id.BackEdit)
         RelativeLayoutEditProfil = requireView().findViewById(R.id.RelativeLayoutEditProfil)
 
-        val switchBtn = requireView().findViewById<SwitchMaterial>(R.id.switchBtn)
-        
-        // initialiser le mode sombre en fonction de l'état enregistré dans SharedPreferences
-        val isDarkMode = MySharedPref.getBoolean(IS_DARK_MODE, false)
-        if (isDarkMode) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            switchBtn.isChecked = true
-        } else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            switchBtn.isChecked = false
-        }
 
-// set the switch to listen on checked change
-        switchBtn.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                // sauvegarder l'état du mode sombre en tant que vrai
-                MySharedPref.edit().putBoolean(IS_DARK_MODE, true).apply()
-            } else {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                // sauvegarder l'état du mode sombre en tant que faux
-                MySharedPref.edit().putBoolean(IS_DARK_MODE, false).apply()
-            }
-        }
 
 
     }
@@ -154,35 +131,15 @@ class EditProfil : Fragment() {
 
 
 
-/*    fun FixBackClick()
-    {
-        RelativeLayoutEditProfil.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
-            if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() === 0) {
-                println("Back Clicked !!!!!!!!!!!!!!")
-                v.clearFocus()
-                return@OnKeyListener true
-            }
-            false
-        })
-    }*/
 
-    private fun hideSystemUIAndNavigation() {
-        requireActivity().window.decorView.systemUiVisibility =
-            (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                    or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                    or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                    or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                    or View.SYSTEM_UI_FLAG_FULLSCREEN
-                    or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
-    }
+
+
 
     override fun onDetach() {
         super.onDetach();
         activity?.let{
-            // val intent = Intent (it, Navigation::class.java)
-            //it.startActivity(intent)
+
             fragmentManager?.beginTransaction()?.replace(R.id.container, ProfileFragment())
-               // ?.addToBackStack("profile")?.commit()
             (requireActivity() as Navigation).BottomNavigationView.visibility = View.VISIBLE
         }
     }

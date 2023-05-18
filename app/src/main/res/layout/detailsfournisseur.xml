@@ -174,7 +174,7 @@
                         android:layout_height="match_parent"
                         android:background="@color/green1"
                         android:gravity="center"
-                        android:text="Call"
+                        android:text="@string/Call"
                         android:textColor="#FFFFFF"
                         android:textStyle="bold" />
 
@@ -184,7 +184,7 @@
                         android:layout_height="match_parent"
                         android:background="#15C39A"
                         android:gravity="center"
-                        android:text="Delete"
+                        android:text="@string/Delete"
                         android:textColor="#FFFFFF"
                         android:textStyle="bold" />
 

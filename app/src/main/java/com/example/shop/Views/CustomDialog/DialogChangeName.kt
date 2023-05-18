@@ -106,7 +106,7 @@ class DialogChangeName {
 
         val map: HashMap<String, String> = HashMap()
         map["id"] = ID
-        map["username"] = Nom
+        map["firstName"] = Nom
         /////////////////////////////////////////////////////////////////////////////////////////////////////
         service.EditProfil(map).enqueue(object : Callback<JsonObject> {
             override fun onResponse(

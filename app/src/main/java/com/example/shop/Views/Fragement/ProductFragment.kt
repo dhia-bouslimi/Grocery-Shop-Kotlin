@@ -157,6 +157,7 @@ class ProductFragment : Fragment() {
                         quantiteEditText.setText("")
                         prixEditText.setText("")
                         imageView.setImageResource(android.R.color.transparent)
+
                     } else {
                         Toast.makeText(
                             requireContext(),

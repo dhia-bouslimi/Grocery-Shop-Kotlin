@@ -56,7 +56,7 @@ class DialogChangeBio {
             context.getSharedPreferences(PREF_NAME, AppCompatActivity.MODE_PRIVATE);
         val TokenUser = MySharedPref.getString(TOKENUSER, null)
         val IDUser = MySharedPref.getString(IDUSER, null)
-        val BIOUSER = MySharedPref.getString(BIOUSER, null)
+        val BIOUSER = MySharedPref.getString(AGEUSER, null)
         /////////////////////
         btnCancel.setOnClickListener {
             println("Cancel Clicked!")
@@ -102,7 +102,7 @@ class DialogChangeBio {
 
         val map: HashMap<String, String> = HashMap()
         map["id"] = ID
-        map["bio"] = Bio
+        map["age"] = Bio
         /////////////////////////////////////////////////////////////////////////////////////////////////////
         service.EditProfil(map).enqueue(object : Callback<JsonObject> {
             override fun onResponse(
@@ -115,7 +115,7 @@ class DialogChangeBio {
                         AppCompatActivity.MODE_PRIVATE
                     );
                     MySharedPref.edit().apply{
-                        putString(BIOUSER, Bio)
+                        putString(AGEUSER, Bio)
                     }.apply()
                     CustomToast(context, "Changed Done!", "GREEN").show()
                     dialog.cancel();

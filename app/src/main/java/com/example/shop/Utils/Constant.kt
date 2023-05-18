@@ -8,7 +8,7 @@ const val PREF_NAME = "PREF_SHOP"
 const val IDUSER = "ID"
 const val NAMEUSER = "NAME"
 const val EMAILUSER = "EMAIL"
-const val BIOUSER = "BIO"
+const val AGEUSER = "AGE"
 const val AVATARUSER = "AVATAR"
 const val TOKENUSER = "TOKEN"
 const val RememberEmail="RememberEmail"
@@ -17,6 +17,9 @@ const val RememberPassword="RememberPassword"
 const val EMAILFORGET = "EMAILFORGET"
 const val CODEFORGET  = "CODEFORGET"
 const val IS_DARK_MODE = "is_dark_mode"
+const val IS_FRENSH = "is_frensh"
+
+
 
 
 

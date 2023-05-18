@@ -32,7 +32,7 @@
                     android:layout_height="58dp"
                     android:background="#F34336"
                     android:gravity="center"
-                    android:text="Update Product"
+                    android:text="@string/Updateproduct"
                     android:textColor="#FFFFFF"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -62,7 +62,7 @@
                         android:layout_weight="1"
                         android:background="?attr/colorOnPrimary"
 
-                        android:hint="Prix"
+                        android:hint="@string/Price"
                         android:textColorHint="#A1A1A1"
                         app:boxStrokeColor="@color/black"
                         app:boxStrokeWidth="1dp"
@@ -101,7 +101,7 @@
                         android:layout_weight="1"
                         android:background="?attr/colorOnPrimary"
 
-                        android:hint="Quantité"
+                        android:hint="@string/Quantite"
                         android:textColorHint="#A1A1A1"
                         app:boxStrokeColor="@color/black"
                         app:boxStrokeWidth="1dp"
@@ -152,7 +152,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:background="#36474F"
-                            android:text="Save"
+                            android:text="@string/Save"
                             android:textColor="#FFFFFF"
                             tools:layout_editor_absoluteX="3dp"
                             tools:layout_editor_absoluteY="-2dp" />

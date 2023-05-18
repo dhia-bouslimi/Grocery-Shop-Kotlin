@@ -47,8 +47,7 @@ class PromotionFragment : Fragment() {
         ctx = container?.context
         self = LayoutInflater.from(ctx).inflate(R.layout.promotion_fragment, container, false)
 
-        ////////////////////////////////////////////////////////////////////////////////////////////
-        //  val Iam = self?.findViewById<TextView>(R.id.Iam)
+
 
         return self
     }
@@ -57,7 +56,6 @@ class PromotionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         recylcerPromo = view.findViewById(R.id.recyclerPromo)
 
-        // btnShowMyPosts=view.findViewById(R.id.btnShowMyPosts)
         BtnAddPromo=view.findViewById(R.id.ButtonAddPromo)
         SwipeRefreshSearch=view.findViewById(R.id.SwipeRefreshpromo)
 
@@ -106,14 +104,7 @@ class PromotionFragment : Fragment() {
 
         GetAllPromo() //Show only my Posts
 
-      /*  SwipeRefreshSearch.setOnRefreshListener {
-            GetAllBesoin()                // refresh your list contents somehow
-            SwipeRefreshSearch.isRefreshing = false   // reset the SwipeRefreshLayout (stop the loading spinner)
-        }*/
 
-/*        btnShowMyPosts.setOnClickListener {
-            GetAllBesoin() //Show only my Posts
-        }*/
 
 
 
@@ -138,14 +129,11 @@ class PromotionFragment : Fragment() {
                 ContextUtils.getActivity(context)?.runOnUiThread(java.lang.Runnable {
                     CustomToast(requireContext(), "Something went wrong!","RED").show()
                 })
-                // Log.d("***", "Opppsss" + t.message)
             }
         })
     }
 
-   /* override fun senddata(n: Promotion) {
-        PromotionAdapter.addDataList(n)
-    }*/
+
 
 
 }

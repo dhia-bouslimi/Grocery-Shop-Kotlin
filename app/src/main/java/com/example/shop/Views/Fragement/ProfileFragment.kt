@@ -97,14 +97,12 @@ class ProfileFragment : Fragment() {
         btnEditProfile.setBackgroundResource(R.drawable.btn_dark); // Set Button Style @Null on the xml
         //
 
-       // tabLayoutProfile = requireView().findViewById(R.id.tabLayoutProfile)
         viewpagerProfile = requireView().findViewById(R.id.view_pageProfile)
     }
 
     fun OpenEditProfile()
     {
         btnEditProfile.setOnClickListener{
-            //fragmentManager?.beginTransaction()?.replace(R.id.container, EditProfil())?.commit()
             fragmentManager?.beginTransaction()?.replace(R.id.container, EditProfil())?.addToBackStack("Edit")?.commit()
         }
     }
@@ -123,18 +121,14 @@ class ProfileFragment : Fragment() {
         val emailUser = MySharedPref.getString(EMAILUSER, null)
         txtBio.text = emailUser
         //txtBio.text = Html.fromHtml("<a href='stackoverflow.com'>Go StackOverFlow!</a>")
-        println("Lien de la photo : http:// 192.168.1.18:2500/uploads/$avatarUser")
+
         println("avatarUser: $avatarUser")
         val ImagelINKAvatar = (avatarUser)
 
 
 
-        //
-
         //  Set Verified Icon
-        //MyName.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_verified, 0);
-        //MyName.setCompoundDrawablePadding(0);
-        //
+
         if (avatarUser != null && nameUser != null && ImagelINKAvatar != null) {
             if (!ImagelINKAvatar.isNullOrEmpty()) {
                 Glide
@@ -161,15 +155,11 @@ class ProfileFragment : Fragment() {
                             isFirstResource: Boolean
                         ): Boolean {
                             Log.d(TAG, "OnResourceReady")
-                            //do something when picture already loaded
-/*                        MySharedPref.edit().apply{
-                            putString(AVATARUSER, ImagelINKAvatar)
-                        }.apply()*/
+
                             return false
                         }
                     }).into(userAvatar);
             } else {
-                print("uiiiiiiiiii")
                 userAvatar.setImageResource(R.drawable.avatar)
             }
         }
@@ -285,19 +275,16 @@ class ProfileFragment : Fragment() {
 
         viewModell= ViewModelProvider(requireActivity()).get(UserViewModel::class.java)
 
-        //val idUser= IdUser.toString().trim().toRequestBody("text/plain".toMediaTypeOrNull())
-        //val tokenUser= TokenUser.toString().trim().toRequestBody("text/plain".toMediaTypeOrNull())
+
         val emailUser=EmailUser.toString().trim().toRequestBody("text/plain".toMediaTypeOrNull())
         viewModell.UploadAvatar(emailUser,image,context)
         //
         viewModell._UserLiveData.observe(viewLifecycleOwner,{
             if (it!=null){
-                //Toast.makeText(context,  file.name, Toast.LENGTH_LONG).show()
                 CustomToast(requireContext(), "Uploaded Successfully!","GREEN").show()
             }else{
                 CustomToast(requireContext(), "Sorry, Something Goes Wrong!","RED").show()
-                //Toast.makeText(context,  file.name, Toast.LENGTH_LONG).show()
-                // CustomToast(this@Login, "Email or password is incorrect!","RED").show()
+
             }
         })
     }

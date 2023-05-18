@@ -3,49 +3,44 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
+    android:background="?attr/colorOnPrimary"
 
     android:layout_height="match_parent"
     android:fillViewport="true">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="370dp"
-        android:layout_height="100dp"
-        android:layout_marginBottom="260dp"
-        android:layout_margin="20dp"
 
-        app:cardCornerRadius="20dp"
-        android:orientation="vertical">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="357dp"
-            android:layout_height="582dp"
-            android:layout_margin="10dp">
+            android:layout_width="wrap_content"
+            android:layout_height="687dp"
+            android:layout_margin="20dp">
 
             <LinearLayout
                 android:id="@+id/ssss"
-                android:layout_width="357dp"
-                android:layout_height="488dp"
+                android:layout_width="345dp"
+                android:layout_height="491dp"
                 android:background="?attr/colorOnPrimary"
                 android:orientation="vertical"
-                tools:ignore="MissingConstraints">
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="9dp">
+
 
                 <TextView
                     android:id="@+id/textView11"
-                    android:layout_width="match_parent"
+                    android:layout_width="367dp"
                     android:layout_height="58dp"
                     android:background="#F34336"
                     android:gravity="center"
-                    android:text="Add Produit"
+                    android:text="@string/Addproduit"
                     android:textColor="#FFFFFF"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
-
                 <ImageView
                     android:id="@+id/imgproduit"
                     android:layout_width="match_parent"
-                    android:layout_height="171dp"
-                    app:srcCompat="@drawable/avatar" />
+                    android:layout_height="154dp"
+                    app:srcCompat="@drawable/imgadd" />
 
                 <LinearLayout
                     android:id="@+id/ayyyyy"
@@ -60,9 +55,8 @@
                         android:layout_height="match_parent"
                         android:layout_margin="5dp"
                         android:layout_weight="1"
-                        android:background="?attr/colorOnPrimary"
 
-                        android:hint="Type"
+                        android:hint="@string/Type"
                         android:textColorHint="#A1A1A1"
                         app:boxStrokeColor="@color/black"
                         app:boxStrokeWidth="1dp"
@@ -72,7 +66,6 @@
                         app:hintEnabled="true"
                         app:hintTextColor="@color/black"
                         app:layout_constraintHorizontal_bias="0.5"
-                        app:startIconDrawable="@drawable/user_icon"
                         app:startIconTint="@color/green1">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -101,7 +94,7 @@
                         android:layout_weight="1"
                         android:background="?attr/colorOnPrimary"
 
-                        android:hint="Quantité"
+                        android:hint="@string/Quantite"
                         android:textColorHint="#A1A1A1"
                         app:boxStrokeColor="@color/black"
                         app:boxStrokeWidth="1dp"
@@ -111,7 +104,6 @@
                         app:hintEnabled="true"
                         app:hintTextColor="@color/black"
                         app:layout_constraintHorizontal_bias="0.5"
-                        app:startIconDrawable="@drawable/user_icon"
                         app:startIconTint="@color/green1">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -139,7 +131,7 @@
                         android:layout_margin="5dp"
                         android:background="?attr/colorOnPrimary"
 
-                        android:hint="Prix"
+                        android:hint="@string/Price"
                         android:textColorHint="#A1A1A1"
                         app:boxStrokeColor="@color/black"
                         app:boxStrokeWidth="1dp"
@@ -149,7 +141,6 @@
                         app:hintEnabled="true"
                         app:hintTextColor="@color/black"
                         app:layout_constraintHorizontal_bias="0.5"
-                        app:startIconDrawable="@drawable/address_icon"
                         app:startIconTint="@color/green1">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -167,17 +158,29 @@
                 </LinearLayout>
 
 
-                <Button
-                    android:id="@+id/BtnSaveAddProduit"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="72dp"
-                    android:layout_weight="1"
-                    android:background="#36474F"
-                    android:text="Save"
-                    android:textColor="#FFFFFF" />
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                </LinearLayout>
 
             </LinearLayout>
+
+            <Button
+                android:id="@+id/BtnSaveAddProduit"
+                android:layout_width="259dp"
+                android:layout_height="58dp"
+                android:layout_weight="10"
+                android:background="@drawable/rounded_button"
+                android:text="@string/Save"
+                android:textColor="#FFFFFF"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/ssss"
+                app:layout_constraintHorizontal_bias="0.569"
+                app:layout_constraintStart_toStartOf="@+id/ssss"
+                app:layout_constraintTop_toBottomOf="@+id/ssss"
+                app:layout_constraintVertical_bias="0.0" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.cardview.widget.CardView>
 </ScrollView>

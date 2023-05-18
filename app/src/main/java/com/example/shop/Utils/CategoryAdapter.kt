@@ -6,6 +6,8 @@ import android.preference.PreferenceManager
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import android.widget.Filter
+import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shop.R
 import com.example.shop.Utils.CategoryViewHolder
@@ -83,6 +85,8 @@ class CategoryAdapter(var context: Context, var ListList: ArrayList<Category>) :
         }
 
     }
+
+
 
 
 }

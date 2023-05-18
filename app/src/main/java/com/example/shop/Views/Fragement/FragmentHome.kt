@@ -1,5 +1,5 @@
 package com.example.shop.Views.Fragement
-
+import RecommendedAdapter
 import android.annotation.SuppressLint
 import android.app.ProgressDialog
 import android.content.ContentValues.TAG
@@ -18,27 +18,30 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.bumptech.glide.Glide
 import com.example.shop.R
-import com.example.shop.Utils.ListCategory
-import com.example.shop.Utils.ReadyFunction
 import com.facebook.shimmer.ShimmerFrameLayout
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import com.example.shop.Data.Category
+import com.example.shop.Data.Fournisseur
 import com.example.shop.Data.Produit
+import com.example.shop.Data.Promotion
 import com.example.shop.Network.UserApi
 import com.example.shop.Network.retrofit
+import com.example.shop.Utils.*
 import tn.yassin.oneblood.DataMapList.CategoryAdapter
-import com.example.shop.Utils.RecommendedAdapter
+import java.util.Locale.filter
 
 
-class FragmentHome : Fragment() {
+class FragmentHome : Fragment() , talk {
     ///
     val ReadyFunction = ReadyFunction()
     private lateinit var searchView: SearchView
     ///
+
     lateinit var recylcerCategory: RecyclerView
     lateinit var recylcerAdapterCategory: CategoryAdapter
     lateinit var recylcerRecommended: RecyclerView
@@ -47,12 +50,11 @@ class FragmentHome : Fragment() {
     val ListCategory = ListCategory()
     //val ListRecommended = ListRecommended()
     //
-    var PostsModels: ArrayList<Produit> = ArrayList()
+    var PostsModels = ArrayList<Produit>()
     lateinit var mShimmerViewContainer: ShimmerFrameLayout
     lateinit var ShowMoreHome: TextView
     lateinit var txtRecomm:TextView
-lateinit var  imgMosque: ImageView
-    //
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -64,7 +66,7 @@ lateinit var  imgMosque: ImageView
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         //
         initView(view);
-       // OpenSearch();
+        OpenSearch();
         //Check()
         ///
         recylcerCategory = view.findViewById(R.id.recyclerCategory)
@@ -80,18 +82,18 @@ lateinit var  imgMosque: ImageView
         ////
 
         recylcerRecommended.setLayoutManager(StaggeredGridLayoutManager(2, 1))
-        AdapterRecommended = RecommendedAdapter(requireContext(),5)
+        AdapterRecommended = RecommendedAdapter(requireContext(),10)
         recylcerRecommended.adapter = AdapterRecommended
 
 
        // ShowPostsRecommended()
 
         ShowAllPostRecomm()
-        //
+
         mShimmerViewContainer = view.findViewById(R.id.shimmer_view_container);
 
         ShowMoreHome.setOnClickListener{
-            //
+
             val progressDialog = ProgressDialog(context,R.style.DialogStyle)
            // progressDialog.setTitle("Loading")
             //progressDialog.getWindow()!!.setBackgroundDrawable(ColorDrawable(Color.GRAY));
@@ -100,67 +102,24 @@ lateinit var  imgMosque: ImageView
             //progressDialog.setProgressStyle(android.R.attr.progressBarStyleInverse);
             progressDialog.setCancelable(true)
             progressDialog.show()
-            //
+
             recylcerRecommended.setLayoutManager(StaggeredGridLayoutManager(2, 1))
             AdapterRecommended = RecommendedAdapter(requireContext(),1000)
             recylcerRecommended.adapter = AdapterRecommended
             ShowAllPostRecomm()
             //
             val handler = Handler()
-            val runnable = Runnable { //Second fragment after 1 seconds appears
+            val runnable = Runnable {
                 progressDialog.hide()
-                //val Nb: Int = AdapterRecommended.itemCount
-                //txtRecomm.text= "Recommended "+ "("+Nb.toString()+")"
+
             }
             handler.postDelayed(runnable, 3000)
         }
 
-/*        val handler = Handler()
-        val runnable = Runnable { //Second fragment after 1 seconds appears
-            val Nb: Int = AdapterRecommended.getItemCount()
-            txtRecomm.text= "Recommended "+ "("+Nb.toString()+")"
-        }
-        handler.postDelayed(runnable, 2000)*/
-      /*  imgMosque = view.findViewById(R.id.imgMosque);
-        imgMosque.setOnClickListener {
-            activity?.let{
-                val intent = Intent (it, PrayerTimes::class.java)
-                it.startActivity(intent)
-            }
-        }*/
+
     }
 
-   fun Check()
-    {
-        requireActivity().window.getDecorView().getViewTreeObserver()
-            .addOnGlobalLayoutListener {
-                val r = Rect()
-                requireActivity().window.getDecorView()
-                    .getWindowVisibleDisplayFrame(r)
-                val screenHeight: Int =
-                    requireActivity().window.getDecorView().getRootView()
-                        .getHeight()
-                val keypadHeight: Int = screenHeight - r.bottom
 
-                Log.d(TAG, "keypadHeight = " + keypadHeight);
-                if (keypadHeight > screenHeight * 0.15) {
-                    //Keyboard is opened
-                    hideSystemUIAndNavigation()
-                } else {
-                    // keyboard is closed
-                }
-            }
-    }
-
-    private fun hideSystemUIAndNavigation() {
-        requireActivity().window.decorView.systemUiVisibility =
-            (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                    or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                    or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                    or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                    or View.SYSTEM_UI_FLAG_FULLSCREEN
-                    or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
-    }
 
     fun initView(view: View) {
         searchView = view.findViewById(R.id.searchViewHome)
@@ -168,13 +127,7 @@ lateinit var  imgMosque: ImageView
         txtRecomm = view.findViewById(R.id.txtRecomm)
     }
 
-   /* fun OpenSearch()
-    {
-        searchView.setOnClickListener {
-            val intent = Intent(activity, Search::class.java)
-            startActivity(intent)
-        }
-    }*/
+
     ///
 
     fun ShowAllPostRecomm() {
@@ -193,7 +146,7 @@ lateinit var  imgMosque: ImageView
                 mShimmerViewContainer.setVisibility(View.GONE);
                 //
                 val Nb: Int = AdapterRecommended.itemCount
-                txtRecomm.text= "Recommended "+ "("+Nb.toString()+")"
+                txtRecomm.text = getString(R.string.recom) + " (" + Nb.toString() + ")"
             }
 
             @SuppressLint("RestrictedApi")
@@ -204,6 +157,30 @@ lateinit var  imgMosque: ImageView
         })
     }
 
+
+    private fun OpenSearch() {
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                if (newText.length >= 1) {
+                    AdapterRecommended.filter.filter(newText)
+                } else {
+                    ShowAllPostRecomm()
+                    AdapterRecommended.setDataList(PostsModels)
+                    AdapterRecommended.notifyDataSetChanged()
+
+                }
+                return true
+            }
+        })
+    }
+
+
+
+
     override fun onResume() {
         super.onResume()
         mShimmerViewContainer.startShimmerAnimation()
@@ -212,6 +189,16 @@ lateinit var  imgMosque: ImageView
      override fun onPause() {
         mShimmerViewContainer.stopShimmerAnimation()
         super.onPause()
+    }
+
+    override fun senddata(n: Fournisseur) {
+       
+    }
+
+    override fun senddata(n: Promotion) {
+    }
+    override fun senddata(n: Produit) {
+        AdapterRecommended.addDataList(n)
     }
 
 }

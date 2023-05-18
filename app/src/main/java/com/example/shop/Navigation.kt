@@ -49,39 +49,28 @@ class Navigation : AppCompatActivity() {
                 }
                 R.id.nav_profile -> {
                     toolbar.visibility = View.GONE
-                    refresh()
                     selectedFragment = ProfileFragment()
                 }
 
                 R.id.nav_favorite -> {
                     toolbar.visibility = View.GONE
-                    refresh()
                     selectedFragment = FournisseurFragment()
                     println("Forunisseur has selected !!")
                 }
 
                 R.id.nav_explore -> {
                     toolbar.visibility = View.GONE
-                    refresh()
                     selectedFragment = PromotionFragment()
                     println("Promotion has selected !!")
                 }
                 R.id.nav_add -> {
                     toolbar.visibility = View.GONE
-                    refresh()
                     selectedFragment = ProductFragment()
                     println("Promotion has selected !!")
                 }
             }
 
-           // var selectedFragment: Fragment? = null
-         /*   when (item.itemId) {
-                R.id.nav_profile -> {
-                    toolbar.visibility = View.GONE
-                    refresh()
-                    selectedFragment = FournisseurFragment()
-                }
-            }*/
+
 
             val transaction = supportFragmentManager.beginTransaction()
             transaction.setCustomAnimations(
@@ -96,46 +85,7 @@ class Navigation : AppCompatActivity() {
     }
 
 
-/*    companion object {
-        fun hideBottomNav() {
-            lateinit var botomview: BottomNavigationView
-            botomview.visibility = View.GONE
-        }
-    }*/
 
-    private fun refresh()
-    {
-/*        val apiInterface = ApiInterface.create()
-        mSharedPref = this.getSharedPreferences(PREF_NAME, AppCompatActivity.MODE_PRIVATE);
-        apiInterface.retriveuser(mSharedPref.getString(ID, "").toString()).enqueue(object :
-            Callback<User> {
 
-            override fun onResponse(call: Call<User>, response:
-            Response<User>
-            ) {
-                val user = response.body()
-                Log.e("user : ", user.toString())
-                if(user != null)
-                {
-                    mSharedPref.edit().apply{
-                        putString(FOLLOWERS,user.followers.size.toString())
-                        putString(FOLLOWING,user.following.size.toString())
-                        putString(NBPOST,user.posts.size.toString())
-                    }.apply()
 
-                }
-            }
-
-            override fun onFailure(call: Call<User>, t: Throwable) {
-                Toast.makeText(this@Accueil,"Connexion error!", Toast.LENGTH_SHORT).show()
-            }
-        })*/
-    }
-
-/*    override fun onBackPressed() {
-        super.onBackPressed()
-        var intent = Intent(this, Navigation::class.java)
-        startActivity(intent)
-        finish()
-    }*/
 }

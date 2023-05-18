@@ -32,7 +32,7 @@
                     android:layout_height="58dp"
                     android:background="#F34336"
                     android:gravity="center"
-                    android:text="Add Fournisseur"
+                    android:text="@string/Addfournisseur"
                     android:textColor="#FFFFFF"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -62,7 +62,7 @@
                         android:layout_weight="1"
                         android:background="?attr/colorOnPrimary"
 
-                        android:hint="Secteur"
+                        android:hint="@string/spécialité"
                         android:textColorHint="#A1A1A1"
                         app:boxStrokeColor="@color/black"
                         app:boxStrokeWidth="1dp"
@@ -72,7 +72,7 @@
                         app:hintEnabled="true"
                         app:hintTextColor="@color/black"
                         app:layout_constraintHorizontal_bias="0.5"
-                        app:startIconDrawable="@drawable/user_icon"
+                        app:startIconDrawable="@drawable/ic_baseline_add_shopping_cart_24"
                         app:startIconTint="@color/green1">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -101,7 +101,7 @@
                         android:layout_weight="1"
                         android:background="?attr/colorOnPrimary"
 
-                        android:hint="Full Name"
+                        android:hint="@string/fullname"
                         android:textColorHint="#A1A1A1"
                         app:boxStrokeColor="@color/black"
                         app:boxStrokeWidth="1dp"
@@ -139,7 +139,7 @@
                         android:layout_margin="5dp"
                         android:background="?attr/colorOnPrimary"
 
-                        android:hint="Location"
+                        android:hint="@string/Location"
                         android:textColorHint="#A1A1A1"
                         app:boxStrokeColor="@color/black"
                         app:boxStrokeWidth="1dp"
@@ -177,7 +177,7 @@
                         android:layout_margin="5dp"
                         android:background="?attr/colorOnPrimary"
 
-                        android:hint="Phone number"
+                        android:hint="@string/Phone"
                         android:textColorHint="#A1A1A1"
                         app:boxStrokeColor="@color/black"
                         app:boxStrokeWidth="1dp"
@@ -219,7 +219,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="#36474F"
-                    android:text="Save"
+                    android:text="@string/save"
                     android:textColor="#FFFFFF" />
 
             </LinearLayout>

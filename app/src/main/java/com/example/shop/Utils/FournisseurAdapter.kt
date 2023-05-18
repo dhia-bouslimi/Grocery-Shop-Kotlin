@@ -116,13 +116,7 @@ class FournisseurAdapter(var context: Context) : RecyclerView.Adapter<Fournisseu
 
 
 
-    fun PopUpDialog(context: Context) {
-        //Show PopUpp
-        val factory = LayoutInflater.from(context)
-       // val view: View = factory.inflate(R.layout.optionspopup, null)
-      //  val msg = CustomDialogs()
-      //  msg.ShowOptionPopup(context, view)
-    }
+
 
     fun PopUpDetailsNeedy(context: Context) {
         //Show PopUpp

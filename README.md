@@ -10,13 +10,16 @@ G-shop this application is intended to help Grocery staff to manage items, recei
 
 <p align=center>
     <div align="center">
-            
-      <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/64777337/242727601-12e45fa7-59a2-436f-8678-1ba493ec4cbc" width="200" />
-      <img src="https://github.com/dhiaeddine-bouslimi-esprit-tn/Grocery-Shop-Kotlin/assets/64777337/c72f36aa-c07f-4699-8d35-87ec2e26fb41" width="200" />
-
+     <img  width = "200px" src ="https://github.com/dhiaeddine-bouslimi-esprit-tn/Grocery-Shop-Kotlin/assets/64777337/37471ee1-3c3c-4d60-a1c1-beb5501b0ed1"/>
+      <img  width = "200px" src="capture/2.jpg" />
+      <img  height="433px" src="capture/3.jpg"/>
+      <img  width = "200px" src ="capture/4.jpg"/>
+      <br>
+     <img  width = "200px" src ="capture/5.jpg"/>
+      <img  width = "200px" src="capture/6.jpg" />
+      <img  height="433px" src="capture/7.jpg"/>
+      <img  width = "200px" src ="capture/8.jpg"/>
     </div>
-
-
 </p>
 
 <p align="center">(<a href="#top">back to top</a>)</p>

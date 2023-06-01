@@ -10,16 +10,10 @@ G-shop this application is intended to help Grocery staff to manage items, recei
 
 <p align=center>
     <div align="center">
-      <img src="https://camo.githubusercontent.com/https://github.com/dhiaeddine-bouslimi-esprit-tn/Grocery-Shop-Kotlin/assets/64777337/b9c6c35f-a049-429b-8dce-be16ffec7a50.jpg"  width="200" height="400" />
-   <img src="https://camo.githubusercontent.com/https://github.com/dhiaeddine-bouslimi-esprit-tn/Grocery-Shop-Kotlin/assets/64777337/b9c6c35f-a049-429b-8dce-be16ffec7a50" data-canonical-src="https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png" width="200" height="400" />
-      <img src="https://camo.githubusercontent.com/https://github.com/dhiaeddine-bouslimi-esprit-tn/Grocery-Shop-Kotlin/assets/64777337/b9c6c35f-a049-429b-8dce-be16ffec7a50" data-canonical-src="https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png" width="200" height="400" />
-      <img src="https://camo.githubusercontent.com/https://github.com/dhiaeddine-bouslimi-esprit-tn/Grocery-Shop-Kotlin/assets/64777337/b9c6c35f-a049-429b-8dce-be16ffec7a50" data-canonical-src="https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png" width="200" height="400" />
-      <img src="https://camo.githubusercontent.com/https://github.com/dhiaeddine-bouslimi-esprit-tn/Grocery-Shop-Kotlin/assets/64777337/b9c6c35f-a049-429b-8dce-be16ffec7a50" data-canonical-src="https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png" width="200" height="400" /><img src="https://camo.githubusercontent.com/https://github.com/dhiaeddine-bouslimi-esprit-tn/Grocery-Shop-Kotlin/assets/64777337/b9c6c35f-a049-429b-8dce-be16ffec7a50" data-canonical-src="https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png" width="200" height="400" />
-      <img src="https://camo.githubusercontent.com/https://github.com/dhiaeddine-bouslimi-esprit-tn/Grocery-Shop-Kotlin/assets/64777337/b9c6c35f-a049-429b-8dce-be16ffec7a50" data-canonical-src="https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png" width="200" height="400" />
-      <img src="https://camo.githubusercontent.com/https://github.com/dhiaeddine-bouslimi-esprit-tn/Grocery-Shop-Kotlin/assets/64777337/b9c6c35f-a049-429b-8dce-be16ffec7a50" data-canonical-src="https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png" width="200" height="400" />
+    
 ![Screenshot_20230521_125653_Shop](https://github.com/dhiaeddine-bouslimi-esprit-tn/Grocery-Shop-Kotlin/assets/64777337/e53b5fd1-018b-4b57-8438-36644c1dcc69)
 
-    <img src="https://camo.githubusercontent.com/https://github.com/dhiaeddine-bouslimi-esprit-tn/Grocery-Shop-Kotlin/assets/64777337/b9c6c35f-a049-429b-8dce-be16ffec7a50.jpg alt="alt text" width="whatever" height="whatever">
+    
     </div>
 </p>
 

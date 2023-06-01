@@ -10,7 +10,7 @@ G-shop this application is intended to help Grocery staff to manage items, recei
 
 <p align=center>
     <div align="center">
-     <img  width = "200px" src ="https://github.com/dhiaeddine-bouslimi-esprit-tn/Grocery-Shop-Kotlin/assets/64777337/37471ee1-3c3c-4d60-a1c1-beb5501b0ed1"/>
+     <img  width = "200px" src ="https://github.com/dhiaeddine-bouslimi-esprit-tn/Grocery-Shop-Kotlin/assets/64777337/4764432e-038b-43ad-8280-9c37bcad124a"/>
       <img  width = "200px" src="capture/2.jpg" />
       <img  height="433px" src="capture/3.jpg"/>
       <img  width = "200px" src ="capture/4.jpg"/>

@@ -1,27 +1,44 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'com.huawei.agconnect'
 }
 
+
+
 android {
-    namespace 'com.example.shop'
+    namespace 'com.example.shopp'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.shop"
+        applicationId "com.example.shopp"
         minSdk 24
         targetSdk 33
         versionCode 1
         versionName "1.0"
-
+        resConfigs "en","fr"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
-        release {
-            minifyEnabled false
+        debug{
+            debuggable false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        release {
+            debuggable false
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -68,5 +85,6 @@ dependencies {
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
     // Shimmer Animation
     implementation 'com.facebook.shimmer:shimmer:0.1.0@aar'
+    implementation 'com.huawei.hms:push:6.9.0.300'
 
 }

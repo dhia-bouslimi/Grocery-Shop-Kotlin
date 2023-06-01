@@ -19,7 +19,7 @@ public class retrofit {
                 .build();
         //////////////////////////////////////////////////////////////
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://serverdiscovery.onrender.com/")// .baseUrl("http://192.168.81.129:9090/")
+                 .baseUrl("https://shopapp.onrender.com/") //baseUrl("https://serverdiscovery.onrender.com/")
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();

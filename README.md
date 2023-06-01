@@ -23,9 +23,8 @@ G-shop this application is intended to help Grocery staff to manage items, recei
 
 <div align=center>
 
-<h2>🌟Star this repository🌟</h2>
+<h2>🌟Please star this repository and share it with others🌟</h2>
 
-Please ⭐️ this repo and share it with others
 
 </div>
 

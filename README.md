@@ -1,5 +1,3 @@
-# Grocery-Shop-Kotlin
-
 <div id="top"></div>
 <h1 align="center"> G-shop 📱 </h1>
 G-shop this application is intended to help Grocery staff to manage items, receipts and suppliers as well as events such as a sales promotion and many others. It is an application that helps staff to track sales and facilitates daily tasks.

@@ -11,7 +11,7 @@ G-shop this application is intended to help Grocery staff to manage items, recei
 <p align=center>
     <div align="center">
             
-      <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/64777337/242727601-12e45fa7-59a2-436f-8678-1ba493ec4cbc" />
+      <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/64777337/242727601-12e45fa7-59a2-436f-8678-1ba493ec4cbc.jpg" width="200" height="400" />
 
     </div>
 

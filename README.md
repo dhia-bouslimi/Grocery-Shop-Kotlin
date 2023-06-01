@@ -53,4 +53,4 @@ This project is licensed under the **View-Only License**. See the [LICENSE](LICE
 
 </div>
 
-<p align="center">(<a href="#top">back to top</a>)</p>
+

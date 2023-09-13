@@ -1,6 +1,11 @@
 <div id="top"></div>
-<h1 align="center"> G-shop 📱 </h1>
-G-shop this application is intended to help Grocery staff to manage items, receipts and suppliers as well as events such as a sales promotion and many others. It is an application that helps staff to track sales and facilitates daily tasks.
+<h1 align="center"> G-Shop 📱 </h1>
+<br/>
+<h4> G-shop cette application est destinée à aider le personnel de l'épicerie à gérer les articles, les reçus et les fournisseurs ainsi que les événements tels qu'une promotion des ventes et bien d'autres. Il s'agit d'une application qui aide le personnel à suivre les ventes et facilite les tâches quotidiennes.</h4>
+<br/>
+<h4> * Technologies utilisées : Kotlin, NodeJs, Figma </h4>
+<br/>
+
 <br/>
 <h1 align="center"> Screenshot </h1>
 <br/>

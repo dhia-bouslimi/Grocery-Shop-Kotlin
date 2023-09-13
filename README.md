@@ -1,13 +1,13 @@
 <div id="top"></div>
 <h1 align="center"> G-Shop 📱 </h1>
 <br/>
-<h4> G-shop cette application est destinée à aider le personnel de l'épicerie à gérer les articles, les reçus et les fournisseurs ainsi que les événements tels qu'une promotion des ventes et bien d'autres. Il s'agit d'une application qui aide le personnel à suivre les ventes et facilite les tâches quotidiennes.</h4>
+<h4> * G-shop cette application est destinée à aider le personnel de l'épicerie à gérer les articles, les reçus et les fournisseurs ainsi que les événements tels qu'une promotion des ventes et bien d'autres. Il s'agit d'une application qui aide le personnel à suivre les ventes et facilite les tâches quotidiennes.</h4>
 <br/>
 <h4> * Technologies utilisées : Kotlin, NodeJs, Figma </h4>
 <br/>
 
 <br/>
-<h1 align="center"> Screenshot </h1>
+<h1 align="center"> Capture d'écran </h1>
 <br/>
 
 
